@@ -1,6 +1,6 @@
 {
-  "name": "Simbion Film",
-  "description": "Official interactive website and portfolio showcase for Simbion Film, an independent filmmaking boutique.",
+  "name": "SIMBION Film Boutique",
+  "description": "Simbion independent filmmaking boutique website featuring cinematic motion, interactive video showcase, client collaborators infinite marquee, and custom film experiences.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

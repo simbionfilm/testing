@@ -1,18 +1,850 @@
-<!doctype html>
-<html lang="id" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SIMBION FILM — Boutique Filmmaking Studio</title>
-    <meta name="description" content="Simbion is an independent filmmaking boutique based in South Jakarta, Indonesia." />
+<!DOCTYPE html>
+<html lang="id" class="overflow-x-hidden w-full max-w-full">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J5F2G2P7HR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J5F2G2P7HR');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMBION FILM</title>
+    
+    <link rel="icon" type="image/png" href="orang.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..120,300..900&family=Google+Sans+Display:ital,wght@0,400..900;1,400..900&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Google+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
-  </head>
-  <body class="bg-black text-white selection:bg-[#0616C6] selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#0a0a0a',
+                        white: '#dedede',
+                        simbionBlue: '#000AC2',
+                        darkBg: '#0a0a0a',
+                        lightText: '#dedede',
+                        mutedText: '#888888',
+                        borderGray: '#222222'
+                    },
+                    fontFamily: {
+                        sans: ['"Google Sans Flex"', '"Google Sans"', 'sans-serif'],
+                        display: ['"Google Sans Flex"', '"Google Sans"', 'sans-serif'],
+                        mono: ['"Google Sans Flex"', '"Google Sans"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        html.lenis, html.lenis.lenis-smooth { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-smooth iframe { pointer-events: none; }
+        @media (pointer: coarse), (hover: none), (max-width: 1024px) {
+            html, body {
+                -webkit-overflow-scrolling: touch;
+                touch-action: pan-y;
+            }
+        }
+        
+        body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea, .font-mono, font-mono {
+            font-family: "Google Sans Flex", "Google Sans", -apple-system, BlinkMacSystemFont, sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: #EDEDED;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            cursor: none !important;
+            isolation: isolate;
+        }
+
+        button, input, select, textarea {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .safari-h-screen {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            min-height: 100dvh;
+        }
+
+        a, button, input, select, textarea, .interactive-el {
+            cursor: none !important;
+        }
+
+        /* Hide custom cursor on mobile, iPad, tablets, and touch devices */
+        @media (pointer: coarse), (hover: none), (max-width: 1024px) {
+            body, a, button, input, select, textarea, .interactive-el, .gallery-item, .video-trigger, .we-are-container {
+                cursor: auto !important;
+            }
+            .custom-cursor {
+                display: none !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
+        }
+
+        canvas {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        ::selection {
+            background-color: #0616C6;
+            color: white;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 31px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), height 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: left, top, width, height;
+        }
+
+        .header-blur-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 64px;
+            z-index: 90;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            background: transparent;
+            border-bottom: 1px solid rgba(222, 222, 222, 0.01);
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-6px) translateX(-3px); }
+        }
+        .floating-widget {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        .slot-wrapper {
+            display: inline-block;
+            overflow: hidden; 
+            vertical-align: middle;
+            height: 1.15em; 
+            line-height: 1.15em;
+            margin-top: -0.12em;
+            margin-bottom: -0.12em;
+            padding: 0 0.02em;
+        }
+        .slot-track {
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+            transform: translateY(-5.75em);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slot-char {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 1.15em;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .hover-text-fx {
+            display: inline-block;
+            position: relative;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), font-style 0.4s ease;
+        }
+
+        @media (hover: hover) {
+            .hover-text-fx:hover, .contact-title-line:hover {
+                font-style: italic !important;
+                transform: translateX(12px) skewX(-6deg) scale(1.02);
+                color: #0616C6 !important;
+            }
+            #selected-title .hover-text-fx:hover, #contact .contact-title-line:hover {
+                font-style: normal !important;
+                transform: translateX(12px) scale(1.02);
+                color: #0616C6 !important;
+            }
+        }
+
+        .we-are-container { 
+            cursor: pointer;
+            perspective: 1200px;
+        }
+        .we-are-word {
+            display: inline-flex;
+            opacity: 1;
+            -webkit-font-smoothing: antialiased;
+            will-change: transform, color;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            user-select: none;
+            margin-right: 0.15em;
+        }
+        .we-are-char {
+            display: inline-block;
+            will-change: transform, filter, color;
+            cursor: pointer;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            font-style: italic;
+            transform-style: preserve-3d;
+        }
+        .we-are-word-wrap {
+            display: inline-block;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+        }
+
+        ::-webkit-scrollbar { display: none; }
+        .custom-scroll::-webkit-scrollbar {
+            display: block !important;
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #000AC2;
+            border-radius: 4px;
+        }
+        .clip-mask { overflow: visible; display: block; padding: 0.3em 0.2em; } 
+
+        @media (max-width: 767px) {
+            .gallery-item { width: 68vw; }
+        }
+        .gallery-item {
+            position: absolute;
+            transition: z-index 0.3s;
+            z-index: 10;
+            will-change: transform;
+            cursor: none !important;
+            width: 42vw;
+            aspect-ratio: 16 / 9;
+        }
+        .gallery-item-inner {
+            will-change: transform, filter;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .velocity-parallax {
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .idle-float {
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        @media (min-width: 768px) {
+            .gallery-item { width: 15vw; }
+        }
+
+        .bts-float {
+            will-change: transform;
+        }
+        
+        .film-track {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            will-change: transform;
+        }
+
+        .text-mask-wrap, .statement-mask, .about-mask {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: baseline;
+            padding-top: 0.14em;
+            padding-bottom: 0.14em;
+        }
+        .text-slide-wrap, .statement-slide, .about-slide {
+            display: inline-block;
+            will-change: transform, opacity;
+            transform-origin: 50% 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .statement-word, .about-word {
+            display: inline-block;
+            will-change: transform, color;
+            cursor: pointer;
+            -webkit-font-smoothing: antialiased;
+            transition: font-style 0.25s ease;
+            user-select: none;
+        }
+        @media (hover: hover) {
+            .statement-word:hover, .about-word:hover {
+                color: #0616C6 !important;
+                font-style: italic !important;
+            }
+        }
+
+        .falling-cameraman-blue {
+            filter: url(#simbion-blue-filter);
+            -webkit-filter: url(#simbion-blue-filter);
+            will-change: transform;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        @keyframes vinyl-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-vinyl-spin {
+            animation: vinyl-spin 4.5s linear infinite;
+        }
+        .vinyl-disc {
+            background: radial-gradient(circle at center, #1c1c1c 0%, #0f0f0f 55%, #050505 100%);
+            box-shadow: 0 4px 14px rgba(10, 10, 10, 0.8), inset 0 0 4px rgba(222, 222, 222, 0.12);
+        }
+
+        @keyframes scene-float {
+            0%, 55%, 100% { transform: translateY(0px); }
+            70% { transform: translateY(-3.5px); }
+            85% { transform: translateY(1px); }
+        }
+        .animate-scene-float {
+            animation: scene-float 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @keyframes btsFloatA {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50% { transform: translate3d(4px, -12px, 0) rotate(2deg); }
+        }
+        @keyframes btsFloatB {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50% { transform: translate3d(-5px, 14px, 0) rotate(-2.5deg); }
+        }
+        @keyframes btsFloatC {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50% { transform: translate3d(6px, 10px, 0) rotate(1.8deg); }
+        }
+        .bts-float-anim-1 { animation: btsFloatA 5.2s ease-in-out infinite; will-change: transform; }
+        .bts-float-anim-2 { animation: btsFloatB 6.1s ease-in-out infinite 0.8s; will-change: transform; }
+        .bts-float-anim-3 { animation: btsFloatC 5.7s ease-in-out infinite 1.6s; will-change: transform; }
+
+        .bts-card-optimized {
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            contain: paint layout;
+            transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s ease;
+        }
+
+        .speed-line {
+            position: absolute;
+            top: 0;
+            width: 1px;
+            height: 200%;
+            background: repeating-linear-gradient(180deg, transparent, transparent 15vh, rgba(255,255,255,0.2) 15vh, rgba(255,255,255,0.2) 30vh);
+            animation: moveSpeedLines linear infinite;
+        }
+        @keyframes moveSpeedLines {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+        @keyframes floatObstacleAnim {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(5px, -5px) rotate(8deg); }
+            66% { transform: translate(-5px, 5px) rotate(-8deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .animate-float-obstacle {
+            animation: floatObstacleAnim 3s ease-in-out infinite;
+        }
+        @keyframes floatLetterAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float-letter {
+            animation: floatLetterAnim 2s ease-in-out infinite;
+        }
+        .obstacle-png-img {
+            filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0, 10, 194, 0.6));
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        @keyframes filmAwardGlowAnim {
+            0%, 100% {
+                filter: drop-shadow(0 0 12px rgba(255, 255, 255, 1)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.8));
+                transform: scale(1) translateY(0);
+            }
+            50% {
+                filter: drop-shadow(0 0 22px rgba(255, 255, 255, 1)) drop-shadow(0 0 45px rgba(255, 255, 255, 0.9));
+                transform: scale(1.1) translateY(-6px);
+            }
+        }
+        .animate-film-award-glow {
+            animation: filmAwardGlowAnim 1.8s ease-in-out infinite;
+        }
+        @keyframes letterPopAnim {
+            0% { transform: scale(0.3) translateY(4px); opacity: 0; }
+            60% { transform: scale(1.35) translateY(-2px); opacity: 1; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .animate-letter-pop {
+            animation: letterPopAnim 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes shieldAuraPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) drop-shadow(0 0 35px rgba(0, 10, 194, 0.9)) brightness(1.2);
+                opacity: 1;
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1)) drop-shadow(0 0 55px rgba(255, 255, 255, 0.95)) brightness(1.4);
+                opacity: 0.8;
+            }
+        }
+        .invincible-active {
+            animation: shieldAuraPulse 0.3s ease-in-out infinite !important;
+        }
+    </style>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-darkBg text-lightText font-sans selection:bg-simbionBlue selection:text-lightText">
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute w-0 h-0 overflow-hidden pointer-events-none opacity-0" aria-hidden="true" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+        <defs>
+            <filter id="simbion-blue-filter" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
+                <feColorMatrix type="matrix" values="
+                    0 0 0 0 0.0
+                    0 0 0 0 0.0392
+                    0 0 0 0 0.7608
+                    0 0 0 1 0" />
+            </filter>
+        </defs>
+    </svg>
+
+    <div id="play-hint" class="fixed top-5 md:top-6 left-1/2 -translate-x-1/2 z-[105] opacity-0 transition-all duration-500 font-mono text-[8px] md:text-[9px] text-lightText/90 bg-[#0a0a0a]/90 border border-white/15 backdrop-blur-md px-3 md:px-3.5 py-1.5 rounded-full flex items-center justify-center transform -translate-y-2 select-none shadow-sm pointer-events-auto md:pointer-events-none cursor-pointer md:cursor-default">
+        <span class="hidden md:inline-block tracking-[0.25em] text-lightText/80">[ SPACE ] TO PLAY</span>
+        <span class="inline-flex md:hidden items-center gap-1.5 tracking-[0.18em] text-lightText font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5 text-simbionBlue animate-pulse shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>CLICK LOGO TO PLAY</span>
+        </span>
+    </div>
+
+    <!-- Mini Game Overlay -->
+    <div id="game-overlay" class="fixed inset-0 z-[99999] bg-[#0a0a0a] hidden items-stretch justify-center pointer-events-auto overflow-hidden">
+        <div class="relative w-full h-[100dvh] overflow-hidden bg-[#0a0a0a] flex flex-col items-center" id="game-area" style="touch-action: none; cursor: none !important;">
+            <div id="close-game" class="absolute bottom-6 right-6 text-lightText/50 hover:text-lightText font-mono text-xs md:text-sm tracking-widest uppercase z-[100] pointer-events-auto cursor-pointer" style="cursor: pointer;">[ ESC ] TO CLOSE</div>
+            
+            <div id="speed-lines-container" class="absolute inset-0 pointer-events-none z-0">
+                <div class="speed-line" style="left: 15%; animation-duration: 0.5s"></div>
+                <div class="speed-line" style="left: 35%; animation-duration: 0.4s"></div>
+                <div class="speed-line" style="left: 55%; animation-duration: 0.6s"></div>
+                <div class="speed-line" style="left: 75%; animation-duration: 0.45s"></div>
+                <div class="speed-line" style="left: 85%; animation-duration: 0.7s"></div>
+            </div>
+            
+            <div class="absolute top-14 md:top-6 left-6 font-mono text-base md:text-xl text-white font-black z-30 tracking-wider" id="game-score">TIME: 0.00s</div>
+            <div id="game-word" class="absolute top-14 md:top-6 left-1/2 -translate-x-1/2 z-30 flex flex-row flex-nowrap items-center justify-center gap-1.5 md:gap-2 pointer-events-none" style="left: 50%; transform: translateX(-50%);"></div>
+            
+            <div id="slowmo-overlay" class="absolute inset-0 pointer-events-none z-15 opacity-0 transition-opacity duration-300 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,10,194,0.3)_100%)]"></div>
+            <div id="slowmo-hud" class="absolute top-26 md:top-20 left-1/2 -translate-x-1/2 font-mono text-[10px] md:text-xs text-white/90 font-semibold bg-[#000AC2]/60 border border-white/20 backdrop-blur-sm px-2.5 py-0.5 rounded-full z-35 tracking-wider uppercase hidden items-center gap-1.5 shadow-[0_0_10px_rgba(255,255,255,0.4)] opacity-85 transition-opacity pointer-events-none">
+                <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+                <span id="slowmo-countdown-text">SHIELD: 5.0s</span>
+            </div>
+            
+            <div id="game-start-msg" class="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a0a]/95 z-40 pointer-events-auto px-4" style="cursor: auto;">
+                <div class="flex items-center gap-6 mb-8 text-lightText/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-pulse"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-pulse"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </div>
+                <p class="font-mono text-sm md:text-xl text-white tracking-[0.25em] md:tracking-[0.3em] uppercase animate-pulse font-bold cursor-pointer text-center" id="start-btn">[ CLICK OR PRESS SPACE TO START ]</p>
+            </div>
+            
+            <div id="game-over-msg" class="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a0a]/95 z-40 hidden pointer-events-auto px-4 overflow-y-auto" style="cursor: auto;">
+                <p class="font-mono text-3xl md:text-6xl text-[#000AC2] font-black mb-1 uppercase drop-shadow-md">CUT!</p>
+                <p class="font-mono text-xs md:text-base text-lightText/80 mb-4 md:mb-12 text-center px-4">YOU HIT THE EQUIPMENT.</p>
+                
+                <div class="w-full max-w-[280px] md:hidden bg-white/5 border border-white/10 rounded-xl p-3 mb-5 shadow-lg">
+                    <div class="pb-2 border-b border-white/10 flex items-center justify-between mb-2">
+                        <span class="font-mono text-[#000AC2] font-black text-xs tracking-widest uppercase">HIGHSCORES</span>
+                        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-white/10 text-[8px] font-mono text-white/90 tracking-wider">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#000AC2] shadow-[0_0_6px_#000AC2] animate-pulse"></span>
+                            ONLINE
+                        </span>
+                    </div>
+                    <div id="score-list-mobile-over" class="flex flex-col gap-1.5 font-mono text-[11px] text-white max-h-28 overflow-y-auto"></div>
+                </div>
+
+                <p class="font-mono text-xs md:text-xl text-white tracking-[0.25em] md:tracking-[0.3em] uppercase animate-pulse font-bold cursor-pointer text-center" id="restart-btn">[ TAP OR PRESS SPACE TO TRY AGAIN ]</p>
+            </div>
+            
+            <div id="game-win-msg" class="absolute inset-0 flex flex-col items-center justify-center bg-white z-40 hidden pointer-events-auto text-black px-4 overflow-y-auto" style="cursor: auto;">
+                <p class="font-mono text-3xl md:text-6xl text-[#000AC2] font-black mb-2 uppercase drop-shadow-md">IT'S A WRAP!</p>
+                <p class="font-mono text-sm md:text-2xl font-bold mb-3 md:mb-6 text-center px-4" id="final-time-msg">TIME: 0.00s</p>
+                
+                <div class="flex flex-col items-center mb-3" id="game-win-input-area">
+                    <span class="font-mono text-xs text-[#000AC2] font-bold tracking-widest uppercase mb-1">★ TOP 10 HIGHSCORE! ★</span>
+                    <input type="text" id="player-name-input-win" placeholder="ENTER NAME" class="bg-transparent border-b-2 border-[#000AC2] text-black font-mono text-center text-lg md:text-2xl outline-none mb-2 md:mb-3 uppercase py-1 w-56 md:w-80 focus:border-black transition-colors placeholder:text-black/40" autocomplete="off" maxlength="12">
+                    <p class="font-mono text-[11px] md:text-xs opacity-60 tracking-widest text-center px-4 mb-3">[ PRESS ENTER TO RECORD ]</p>
+                </div>
+
+                <div class="w-full max-w-[280px] md:hidden bg-black/5 border border-black/10 rounded-xl p-3 mb-4 shadow-sm">
+                    <div class="pb-2 border-b border-black/10 flex items-center justify-between mb-2">
+                        <span class="font-mono text-[#000AC2] font-black text-xs tracking-widest uppercase">HIGHSCORES</span>
+                        <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-black/10 text-[8px] font-mono text-black/90 tracking-wider">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#000AC2] shadow-[0_0_6px_#000AC2] animate-pulse"></span>
+                            ONLINE
+                        </span>
+                    </div>
+                    <div id="score-list-mobile-win" class="flex flex-col gap-1.5 font-mono text-[11px] text-black max-h-28 overflow-y-auto"></div>
+                </div>
+
+                <p class="font-mono text-xs md:text-xl text-black tracking-[0.25em] md:tracking-[0.3em] uppercase animate-pulse font-bold cursor-pointer text-center" id="play-again-btn">[ TAP OR PRESS SPACE TO PLAY AGAIN ]</p>
+            </div>
+
+            <!-- Player -->
+            <div id="game-player" class="absolute top-[22%] left-1/2 -translate-x-1/2 w-[480px] max-w-none h-auto z-20 will-change-transform pointer-events-none">
+                <img id="game-player-img" src="orang jatuh.gif" class="w-full h-auto object-contain" onerror="const paths=['./orang jatuh.gif','assets/orang jatuh.gif','orang.png','assets/orang.png','orang.gif'];let i=this.dataset.retryIdx?parseInt(this.dataset.retryIdx):0;if(i<paths.length){this.dataset.retryIdx=i+1;this.src=paths[i];}else{this.onerror=null;this.src='https://placehold.co/480x280/000AC2/FFFFFF?text=SIMBION+CAMERAMAN';}">
+            </div>
+
+            <!-- Scoreboard Glass Floating Panel -->
+            <div id="scoreboard-panel" class="absolute top-6 right-6 w-64 md:w-72 bg-black/40 backdrop-blur-xl border border-white/20 rounded-2xl flex-col z-50 p-4 hidden md:flex shadow-2xl pointer-events-auto transition-opacity duration-500 ease-in-out" style="cursor: auto; max-height: 80vh;">
+                <div class="pb-3 border-b border-white/20 flex items-center justify-between">
+                    <h3 class="font-mono text-[#000AC2] font-black text-lg md:text-xl tracking-widest uppercase drop-shadow-md">HIGHSCORES</h3>
+                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-white/90 tracking-wider">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#000AC2] shadow-[0_0_8px_#000AC2] animate-pulse"></span>
+                        ONLINE
+                    </span>
+                </div>
+                <div id="score-list" class="flex-1 overflow-y-auto pt-3 flex flex-col gap-2.5 font-mono text-sm text-white"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preloader -->
+    <div id="fake-loader" class="fixed inset-0 z-[9999] bg-simbionBlue flex flex-col items-center justify-center overflow-hidden">
+        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full text-center">
+            <div id="loader-img-wrap" class="w-[65vw] md:w-[46vw] max-w-3xl h-auto will-change-transform flex flex-col items-center justify-center pointer-events-none relative">
+                <img src="ORANGSHOOTINGALPHACREDIT-ezgif.com-video-to-gif-converter.gif" alt="Loading Cameraman" class="w-full h-auto object-contain pointer-events-none" onerror="this.onerror=null; this.src='https://placehold.co/600x400/000AC2/FFFFFF?text=SIMBION+FILM';">
+                
+                <div id="loader-text-wrap" class="absolute bottom-6 sm:bottom-10 md:bottom-14 lg:bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 pointer-events-none whitespace-nowrap z-20">
+                    <span id="loader-text" class="text-xs sm:text-sm md:text-base font-mono font-bold tracking-[0.3em] uppercase text-lightText/95">CAMERA ROLL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-cursor" id="custom-cursor"></div>
+    
+    <!-- Left Scroll Indicator -->
+    <aside id="left-scroll-indicator" class="fixed left-0 sm:left-1 md:left-1.5 lg:left-2 top-[48px] sm:top-[60px] md:top-[75px] bottom-3 sm:bottom-5 md:bottom-8 z-[100] flex flex-col items-center pointer-events-none opacity-0 select-none w-10 sm:w-14 md:w-20 lg:w-24" aria-label="Page Scroll Progress">
+        <div id="scroll-track-container" class="relative w-full h-full flex justify-center pointer-events-none">
+            <div id="falling-cameraman-runner" class="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none flex flex-col items-center z-30 will-change-transform">
+                <div class="relative flex items-center justify-center pointer-events-none">
+                    <img src="orang jatuh.gif" 
+                         alt="Falling Cameraman Indicator" 
+                         class="falling-cameraman-blue transform rotate-[-6deg] w-[50px] sm:w-[85px] md:w-[130px] lg:w-[190px] h-auto max-w-[190px]"
+                         onerror="this.onerror=null; this.src='https://placehold.co/120x120/000AC2/FFFFFF?text=CAMERAMAN';">
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+    <div class="header-blur-mask"></div>
+
+    <!-- Chat Widget -->
+    <div id="chat-balloon" class="fixed bottom-12 md:bottom-16 right-6 md:right-10 z-[105] group cursor-pointer interactive-el floating-widget transition-all duration-700 ease-in-out origin-bottom-right opacity-0 md:opacity-100 pointer-events-none md:pointer-events-auto transform translate-y-4 md:translate-y-0 scale-90 md:scale-100">
+        <div id="chat-balloon-inner" class="relative bg-simbionBlue text-lightText px-3 py-1.5 rounded-xl group-hover:scale-105 transition-all duration-300 flex items-center gap-1.5 border border-white/10">
+            <div id="chat-balloon-tail" class="absolute -bottom-1.5 right-7 w-2.5 h-2.5 bg-simbionBlue border-r border-b border-white/10 transform rotate-45 pointer-events-none transition-all duration-300"></div>
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping shrink-0"></span>
+            <span class="text-[8px] md:text-[9px] font-medium font-mono tracking-widest uppercase text-lightText mt-[1px]">ANYTHING ON YOUR MIND?</span>
+        </div>
+    </div>
+
+    <div id="chat-modal" class="fixed bottom-12 md:bottom-16 right-6 md:right-10 z-[110] w-[calc(100vw-3rem)] md:w-96 opacity-0 pointer-events-none transition-all duration-500 transform translate-y-8 scale-95 origin-bottom-right">
+        <div class="bg-darkBg border border-white/20 rounded-3xl p-6 flex flex-col gap-5">
+            <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-simbionBlue"></span>
+                    <h3 class="font-bold text-sm uppercase tracking-wider text-lightText">LET'S TALK</h3>
+                </div>
+                <button id="close-chat" class="text-[10px] font-mono text-mutedText hover:text-lightText uppercase tracking-widest cursor-pointer interactive-el">CLOSE [X]</button>
+            </div>
+            
+            <form id="contact-chat-form" class="flex flex-col gap-3">
+                <input type="hidden" name="access_key" value="37b802f2-c5e1-4645-b47f-d69dc4ca3aec">
+                <input type="email" id="chat-email" name="email" required placeholder="Your email, please" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-simbionBlue outline-none text-lightText tracking-wide interactive-el">
+                <input type="text" id="chat-subject" name="subject" required placeholder="What are we making?" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-simbionBlue outline-none text-lightText tracking-wide interactive-el">
+                <textarea id="chat-body" name="message" required rows="3" placeholder="Tell us what’s on your mind" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-simbionBlue outline-none text-lightText tracking-wide resize-none interactive-el"></textarea>
+                <button type="submit" id="chat-submit-btn" class="bg-simbionBlue text-lightText font-bold text-xs font-mono uppercase tracking-widest px-6 py-3.5 rounded-xl hover:bg-simbionBlue mt-2 interactive-el">
+                    SEND MESSAGE
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="custom-toast" class="fixed top-8 left-1/2 -translate-x-1/2 z-[350] bg-darkBg border border-white/20 text-lightText px-6 py-3 rounded-2xl opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-4">
+        <span id="toast-message" class="text-xs font-mono uppercase tracking-widest">Notification</span>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="custom-confirm-modal" class="fixed inset-0 z-[320] bg-darkBg/95 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 p-4">
+        <div class="bg-darkBg border border-white/20 rounded-3xl w-full max-w-sm p-6 text-lightText text-center transform scale-95 transition-transform duration-300 modal-inner">
+            <h3 id="confirm-title" class="font-bold text-base uppercase tracking-wider mb-2">Confirmation</h3>
+            <p id="confirm-desc" class="text-xs text-mutedText font-mono mb-6">Are you sure?</p>
+            <div class="flex gap-3 justify-center">
+                <button id="confirm-no" class="bg-white/10 px-5 py-2.5 rounded-xl text-xs font-mono uppercase hover:bg-white/25">Cancel</button>
+                <button id="confirm-yes" class="bg-simbionBlue px-6 py-2.5 rounded-xl text-xs font-mono uppercase font-bold">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Modal for CMS Access -->
+    <div id="password-modal" class="fixed inset-0 z-[300] bg-darkBg/95 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 p-4 overflow-y-auto">
+        <div class="bg-darkBg border border-white/20 rounded-3xl w-full max-w-md p-6 text-lightText relative text-center my-auto transform scale-95 transition-transform duration-300 modal-inner">
+            <h3 class="font-bold text-lg uppercase tracking-wider mb-2">ADMIN ACCESS</h3>
+            <p class="text-xs text-mutedText font-mono mb-6">Enter password to unlock CMS editor.</p>
+            <form id="password-form" class="space-y-4">
+                <input type="password" id="admin-password" placeholder="Enter Password" class="w-full bg-darkBg border border-white/20 rounded-xl px-4 py-3 text-xs text-center focus:border-simbionBlue outline-none tracking-widest interactive-el">
+                <div class="flex gap-2 justify-center">
+                    <button type="button" id="close-password" class="bg-white/10 px-4 py-2 rounded-xl text-xs font-mono uppercase hover:bg-white/20 interactive-el">Cancel</button>
+                    <button type="submit" class="bg-simbionBlue px-6 py-2 rounded-xl text-xs font-mono uppercase font-bold interactive-el">Unlock</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CMS Modal -->
+    <div id="cms-modal" data-lenis-prevent class="fixed inset-0 z-[250] bg-darkBg/95 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 p-4 md:p-8 overflow-y-auto">
+        <div data-lenis-prevent class="bg-darkBg border border-white/20 rounded-3xl w-full max-w-4xl p-6 md:p-8 text-lightText relative my-auto transform scale-95 transition-transform duration-300 modal-inner max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-6 border-b border-white/10 mb-6 shrink-0">
+                <div>
+                    <h2 class="font-bold text-lg md:text-xl tracking-wider uppercase">SIMBION CMS EDITOR</h2>
+                    <p class="text-xs text-mutedText font-mono mt-1">Changes save instantly to your browser storage.</p>
+                </div>
+                <button id="close-cms" class="text-xs font-mono bg-white/10 px-4 py-2 rounded-xl hover:bg-white/20 uppercase interactive-el">CLOSE [ESC]</button>
+            </div>
+
+            <div class="overflow-y-auto flex-1 pr-1 custom-scroll" data-lenis-prevent>
+                <div class="mb-8 p-4 bg-darkBg rounded-2xl border border-white/10">
+                    <h3 class="text-xs font-mono uppercase tracking-widest text-simbionBlue mb-4">New Release Widget</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-mono uppercase text-mutedText mb-1">Artist & Title</label>
+                            <input type="text" id="cms-rr-title" class="w-full bg-darkBg border border-white/20 rounded-xl px-3 py-2 text-xs focus:border-simbionBlue outline-none interactive-el">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono uppercase text-mutedText mb-1">YouTube Video ID</label>
+                            <input type="text" id="cms-rr-id" class="w-full bg-darkBg border border-white/20 rounded-xl px-3 py-2 text-xs focus:border-simbionBlue outline-none interactive-el">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono uppercase text-mutedText mb-1">YouTube Link / URL</label>
+                            <input type="text" id="cms-rr-link" class="w-full bg-darkBg border border-white/20 rounded-xl px-3 py-2 text-xs focus:border-simbionBlue outline-none interactive-el">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xs font-mono uppercase tracking-widest text-simbionBlue">Selected Works List (<span id="cms-count">0</span> Items)</h3>
+                        <button id="cms-add-item" class="bg-simbionBlue text-lightText text-[10px] font-mono uppercase px-4 py-2 rounded-xl interactive-el">+ Add New Work</button>
+                    </div>
+                    <div id="cms-items-container" data-lenis-prevent class="space-y-4 max-h-[50vh] overflow-y-auto pr-2 custom-scroll"></div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-white/10 flex justify-end items-center gap-4 shrink-0">
+                <button id="cms-reset-scores" class="text-xs font-mono text-amber-400/80 hover:text-amber-400 hover:underline px-3 py-2 interactive-el">Reset Local Highscores</button>
+                <button id="cms-reset" class="text-xs font-mono text-red-400 hover:underline px-3 py-2 interactive-el">Reset Defaults</button>
+                <button id="cms-save" class="bg-white text-black font-bold text-xs font-mono uppercase px-6 py-3 rounded-xl hover:bg-neutral-200 interactive-el">Save & Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-[200] bg-darkBg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500">
+        <button id="close-modal" class="absolute top-6 right-8 text-lightText text-xs font-mono tracking-[0.3em] uppercase z-10 p-4 interactive-el">
+            CLOSE [X]
+        </button>
+        <div class="w-[95vw] md:w-[80vw] aspect-video max-w-6xl bg-darkBg rounded-2xl overflow-hidden relative border border-white/10 transform scale-95 transition-transform duration-500 modal-inner">
+            <iframe id="modal-iframe" src="" class="w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 w-full z-[100] p-6 mix-blend-difference flex justify-between items-start pointer-events-none text-xs md:text-sm tracking-widest text-lightText">
+        <div class="pointer-events-auto flex flex-col gap-1">
+            <a href="#hero" class="">
+                <img src="LOGOmuter.gif" alt="SIMBION FILM" class="h-[17px] md:h-[23px] w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x30/0a0a0a/dedede?text=SIMBION';">
+            </a>
+        </div>
+    </nav>
+
+    <div id="recent-release-container"></div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative w-full h-[100dvh] min-h-[600px] flex flex-col justify-center items-center px-6 md:px-12 bg-darkBg z-10 overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center parallax-hero z-10 pointer-events-none opacity-100 mix-blend-normal">
+            <img id="hero-main-gif" src="ORANGSHOOTINGALPHACREDIT-ezgif.com-video-to-gif-converter.gif" alt="Filmmaking GIF" class="w-[65vw] md:w-[46vw] max-w-3xl h-auto object-contain will-change-transform" onerror="this.onerror=null; this.src='https://placehold.co/650x450/0a0a0a/dedede?text=SIMBION+FILM';">
+        </div>
+    </section>
+
+    <!-- About Section with its own 3D Canvas -->
+    <section id="about" class="relative w-full h-[100dvh] bg-darkBg text-lightText flex flex-col justify-center items-start px-8 md:px-20 lg:px-32 z-20 overflow-hidden">
+        <div class="relative w-full max-w-[55vw] md:max-w-[45vw] lg:max-w-[40vw] my-auto flex flex-col z-30">
+            <p id="about-desc-text" class="interactive-el text-[3.8vw] md:text-[20px] lg:text-[24px] xl:text-[28px] font-bold uppercase tracking-tight text-lightText leading-snug cursor-default text-justify relative">
+                SIMBION IS AN INDEPENDENT FILMMAKING BOUTIQUE BASED IN SOUTH JAKARTA, INDONESIA. WE STARTED FROM THE GROUND UP, DRIVEN BY A GROUP OF PASSIONATE FILMMAKERS WITH A SHARED LOVE FOR THE CRAFT AND A CURIOSITY FOR WHERE IT CAN TAKE US. WORKING INDEPENDENTLY HAS ALWAYS BEEN PART OF WHO WE ARE. IT KEEPS US CLOSE TO THE WORK, OPEN TO DIFFERENT PERSPECTIVES, AND CONNECTED TO THE PEOPLE WE WORK WITH.
+            </p>
+        </div>
+        <!-- 3D Canvas 1 in About -->
+        <canvas id="about-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+    </section>
+
+    <!-- We Are Section with its own 3D Canvas -->
+    <section id="we-are-made" class="relative w-full h-[100dvh] bg-darkBg flex flex-col justify-center items-center px-3 sm:px-6 md:px-24 z-20 overflow-hidden">
+        <div class="we-are-container relative z-10 my-auto flex flex-col items-center justify-center gap-2 md:gap-4 select-none w-full max-w-7xl">
+            <div class="flex justify-center gap-x-2 sm:gap-x-4 md:gap-x-6 clip-mask">
+                <div class="we-are-word-wrap"><span class="we-are-word font-black uppercase text-[11vw] sm:text-[12vw] md:text-[9vw] leading-[0.95] tracking-tighter text-lightText italic transform -rotate-1">WE</span></div>
+                <div class="we-are-word-wrap"><span class="we-are-word font-black uppercase text-[11vw] sm:text-[12vw] md:text-[9vw] leading-[0.95] tracking-tighter text-lightText italic transform -rotate-1">ARE</span></div>
+            </div>
+            <div class="flex justify-center gap-x-1.5 sm:gap-x-3 md:gap-x-6 clip-mask mt-1 md:mt-3">
+                <div class="we-are-word-wrap"><span class="we-are-word font-black uppercase text-[9vw] sm:text-[10vw] md:text-[9vw] leading-[0.95] tracking-tighter text-lightText italic transform -rotate-1">WHAT</span></div>
+                <div class="we-are-word-wrap"><span class="we-are-word font-black uppercase text-[9vw] sm:text-[10vw] md:text-[9vw] leading-[0.95] tracking-tighter text-lightText italic transform -rotate-1">WE'VE</span></div>
+                <div class="we-are-word-wrap"><span class="we-are-word font-black uppercase text-[9vw] sm:text-[10vw] md:text-[9vw] leading-[0.95] tracking-tighter text-lightText italic transform -rotate-1">MADE</span></div>
+            </div>
+        </div>
+        <!-- 3D Canvas 2 in We Are -->
+        <canvas id="we-are-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-20"></canvas>
+    </section>
+
+    <!-- Selected Works Section -->
+    <section id="selected-work" class="relative bg-darkBg z-40 w-full h-[100dvh] overflow-hidden flex flex-col">
+        <div class="absolute top-20 md:top-24 left-6 md:left-12 z-50 pointer-events-none">
+            <div id="selected-title" class="flex flex-col text-4xl sm:text-5xl md:text-7xl lg:text-[7vw] font-bold tracking-tighter leading-[0.9] text-lightText uppercase pointer-events-auto w-fit">
+                <div class="velocity-line interactive-el hover-text-fx" data-text="SELECTED"></div>
+                <div class="velocity-line interactive-el hover-text-fx" data-text="WORKS"></div>
+            </div>
+        </div>
+        <div class="relative w-full flex-1 overflow-hidden">
+            <div class="film-track" id="film-track"></div>
+        </div>
+    </section>
+
+    <!-- The Soul Section (BTS Marquee) -->
+    <section id="the-soul" class="relative w-full min-h-[155dvh] bg-darkBg text-lightText flex flex-col justify-start px-0 pt-20 pb-28 md:pt-32 md:pb-40 lg:pt-40 lg:pb-48 z-45 overflow-x-clip overflow-y-visible">
+        <div class="w-full max-w-[1400px] mx-auto px-6 md:px-12 mb-12 md:mb-20 lg:mb-24">
+            <div class="w-full relative flex flex-col items-start">
+                <h2 id="soul-title" class="text-4xl sm:text-5xl md:text-7xl lg:text-[7.5vw] font-bold tracking-tighter leading-[0.95] text-lightText w-full max-w-5xl interactive-el hover-text-fx">
+                    The soul behind<br class="hidden sm:inline"> every frame.
+                </h2>
+                <div class="w-full mt-10 sm:mt-14 md:mt-20 lg:mt-24 flex justify-end">
+                    <p id="soul-desc" class="text-sm md:text-base lg:text-lg tracking-wide leading-relaxed text-gray-300 max-w-xl font-normal text-justify">
+                        We craft every frame with passion and purpose. We believe that behind every beautiful frame are people who care deeply about what they create and share a vision of what it could become. Great work begins when different minds and talents come together with purpose.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative w-full py-28 md:py-36 lg:py-44 bts-enter flex justify-center items-center overflow-visible" style="perspective: 1600px; min-height: 95vh;">
+            <div id="bts-carousel-ring" class="relative flex justify-center items-center" style="transform-style: preserve-3d; width: 100%; height: 100%;">
+                <!-- Images injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement Section with its own 3D Canvas -->
+    <section id="statement" data-id="project-fit" class="relative w-full min-h-[100dvh] py-12 md:py-20 bg-darkBg text-lightText flex flex-col justify-center items-start px-8 md:px-20 lg:px-32 z-48 overflow-hidden">
+        <div class="relative w-full max-w-[92vw] sm:max-w-[85vw] md:max-w-[54vw] lg:max-w-[48vw] my-auto flex flex-col z-20">
+            <p id="statement-desc-text" data-alias="fit-desc-text" class="interactive-el text-[3.8vw] sm:text-[3vw] md:text-[22px] lg:text-[28px] xl:text-[34px] font-bold uppercase tracking-tight text-lightText leading-snug text-justify cursor-default relative">
+                EVERY PROJECT DESERVES ITS OWN FIT. WE TAILOR EACH ONE FROM SCRATCH, CAREFULLY STITCHING EVERY FRAME TOGETHER WITH PASSION, PURPOSE, AND DEDICATION. WE BELIEVE GREAT WORK COMES FROM BRINGING TOGETHER THE RIGHT PEOPLE, IDEAS, AND PERSPECTIVES THAT ALIGN WITH THE VISION. EVERY DETAIL MATTERS, EVERY FRAME HAS A PURPOSE, AND EVERY PROJECT DESERVES THE CARE TO MAKE IT FEEL TRULY ITS OWN.
+            </p>
+        </div>
+        <!-- 3D Canvas 3 in Statement -->
+        <canvas id="statement-3d-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative w-full h-[100dvh] bg-darkBg flex flex-col justify-between px-4 md:px-12 py-16 z-[60]">
+        <div class="relative z-10 flex flex-col items-center text-center w-full my-auto">
+            <div class="flex flex-col w-full font-bold leading-[0.9] tracking-tighter">
+                <div class="clip-mask w-full flex justify-center"><div class="velocity-line contact-title-line block uppercase text-[12vw] md:text-[9vw] text-lightText interactive-el hover-text-fx" data-text="READY TO"></div></div>
+                <div class="clip-mask w-full flex justify-center"><div class="velocity-line contact-title-line block uppercase text-[12vw] md:text-[9vw] text-lightText interactive-el hover-text-fx" data-text="ROLL?"></div></div>
+            </div>
+            <p class="text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em] text-lightText/70 opacity-0 transform translate-y-4 reveal-quote mt-10 interactive-el hover-text-fx font-mono">( Guess we’ll see you at the first PPM )</p>
+        </div>
+        <div id="footer-bottom" class="w-full px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6 z-10 text-[10px] tracking-[0.15em] text-mutedText font-mono uppercase">
+            <div class="flex gap-8"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=play@simbionfilm.com" target="_blank" rel="noopener noreferrer" class="interactive-el hover-text-fx text-lightText hover:text-simbionBlue">play@simbionfilm.com</a></div>
+            <div class="flex gap-6 md:gap-10">
+                <a href="https://www.instagram.com/simbionfilm/" target="_blank" rel="noopener noreferrer" class="interactive-el hover-text-fx text-lightText hover:text-simbionBlue">INSTAGRAM</a>
+                <a href="https://id.linkedin.com/company/simbion-production" target="_blank" rel="noopener noreferrer" class="interactive-el hover-text-fx text-lightText hover:text-simbionBlue">LINKEDIN</a>
+            </div>
+            <div class="hover-text-fx text-lightText/50">&copy; 2026 Simbion Film</div>
+        </div>
+    </section>
+
+    <div id="root"></div>
+    <script type="module" src="./src/simbionApp.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
